@@ -1,0 +1,15 @@
+.myalert{
+    width: 100%;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99999;
+    padding: 8px;
+    font-size: 18px;
+}
+.text-alert
+{
+    margin: 10px;
+    /* color: black !important; */
+}
