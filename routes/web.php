@@ -17,4 +17,5 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [AuthController::class, 'signin']);
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/dashboard', [HomeController::class, 'index']);
 Route::post('process_login', [AuthController::class, 'process_login']);
