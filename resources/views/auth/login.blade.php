@@ -26,6 +26,34 @@
                 padding:0px;
             }
         </style>
+        <script>
+
+            function login(){
+                username = $('input[name=username]').val();
+                password = $('input[name=password]').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "<?= BASE_URL ?>process_login",
+                    data: {username,password},
+                    dataType: "text",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(resultData) {
+                        var response = $.parseJSON(resultData);
+
+                        if(!response.success){
+                            alert(response.message);
+                        }else{
+                            alert("Login success");
+                            window.location.href = "<?= BASE_URL ?>home";
+                        }
+                    }
+                });
+
+            }
+        </script>
     </head>
 
     <div class="myalert"></div>
@@ -48,10 +76,10 @@
                                 LOG IN
                             </h3>
                             <br/>
-                            <form class="m-t" name="quickLookForm" role="form" method="post" action="login-user" autocomplete="off" >
+                            <form class="m-t" name="quickLookForm" role="form" onsubmit="return false" method="post" action="login-user" autocomplete="off" >
                             @csrf
                                <div class="form-group">
-                                    <input id="txtUser" type="text" class="form-control" autocomplete="off" name="userName" placeholder="Username" maxlength="30">
+                                    <input id="txtUser" type="text" class="form-control" autocomplete="off" name="username" placeholder="username" maxlength="30">
                                     @error('userName')
                                         {{$message}}
                                     @enderror
@@ -62,7 +90,7 @@
                                         {{$message}}
                                     @enderror
                                 </div>
-                                <input name="Submit" type="submit" value="SUBMIT" id="btnLogin" class="btn btn-success block full-width m-b">
+                                <input name="Submit" onclick="login()" type="submit" value="SUBMIT" id="btnLogin" class="btn btn-success block full-width m-b">
 
                                 <a href="forgot_password.php" class="theme-color font-bold">
                                     <small>Forgot password?</small>
