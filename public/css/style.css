@@ -9844,3 +9844,11 @@ body.md-skin {
     margin: 0;
   }
 }
+
+.error-message{
+  color:#bb1010;
+}
+
+.error-message p{
+  margin-bottom: 2px;
+}

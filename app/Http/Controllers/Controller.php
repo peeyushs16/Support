@@ -10,4 +10,12 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected $user = [];
+    protected $is_admin = false;
+
+    public function set_global_data(){
+        $session = session();
+        $this->user = $session->get('user');
+    }
 }

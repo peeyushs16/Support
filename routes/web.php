@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StateController;
+use App\Http\Middleware\CheckLogin;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,12 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [AuthController::class, 'signin']);
-Route::get('/home', [HomeController::class, 'index']);
-Route::get('/dashboard', [HomeController::class, 'index']);
-Route::post('process_login', [AuthController::class, 'process_login']);
+Route::get('/', [AuthController::class, 'signin'])->name('login');
+Route::post('/process_login', [AuthController::class, 'process_login']);
+Route::get('/signout', [AuthController::class, 'signout']);
+
+Route::middleware([CheckLogin::class])->group(function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index']);
+    Route::get('/state', [StateController::class, 'get_list']);
+});
