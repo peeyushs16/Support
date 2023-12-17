@@ -47,18 +47,12 @@ class StateController extends Controller
     public function update_state(Request $request, $state_id){
 
         $rules = [
-            'active' => 'required|int',
+            'active' => 'required',
             'state_name' => [
                 'required',
-                Rule::unique('state','state_name')->ignore($state_id),
-            ]
+                Rule::unique('state', 'state_name')->ignore($state_id),
+            ],
         ];
-
-        // $rules = [
-        //     // 'state_name' => 'required|unique:state,state_name,'.($state_id),
-        //     'state_name' => 'required',
-        //     'active' => 'required'
-        // ];
 
         $validate = Validator::make($request->all(), $rules);
 
@@ -69,10 +63,7 @@ class StateController extends Controller
             ], 404);
         }
  
-
         $state = StateModel::find($state_id);
-
-        // print_r($state);die;
         $state->state_name = $request->state_name;
         $state->active = $request->active;
         $res = $state->save();
