@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     //All secure URL's
     Route::post('/state/save', [StateController::class, 'save_state']);
     Route::post('/state/update/{id}', [StateController::class, 'update_state']);
+    Route::get('/state/getlist', [StateController::class, 'get_list']);
+    Route::get('/state/edit_state/{id}', [StateController::class, 'edit_state']);
     Route::post('/change_password', [AuthController::class, 'change_password']);
 });
 

@@ -23,7 +23,7 @@ class StateController extends Controller
             return response([
                 "success" => false,
                 'result' => $validate->errors()
-            ], 404);
+            ], 200);
         }
 
         $state = new StateModel();
@@ -78,5 +78,34 @@ class StateController extends Controller
             "success" => true,
             'result' => 'State saved successfully!'
         ], 200);
+    }
+
+    public function edit_state(Request $request, $state_id){
+        return StateModel::where('id', $state_id)->first();
+    }
+
+    public function get_list(Request $request){
+
+        $query = StateModel::query();
+
+        if ($request->state_name) {
+            $query->where('state_name', $request->state_name);
+        }
+
+        $response =  $query->get();
+
+        $html = "";
+        foreach($response as $row){
+            $html .= "<tr>
+                        <td>".$row['state_name']."</td>
+                        <td>". ($row['active'] == 1 ? 'Active' : 'Inactive')."</td>
+                        <td>
+                            <button class='btn btn-warning btn-xs' onclick='edit_state(".$row['id'].");'>Edit</button>
+                            <button class='btn btn-danger btn-xs' onclick='delete_state(".$row['id'].");'>Delete</button>
+                        </td>
+                    </tr>";
+        }
+        return $html;
+
     }
 }

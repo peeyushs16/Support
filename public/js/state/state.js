@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
 
+    getstatelist();
 
     $('.state-form').validate({
         rules:{
@@ -8,27 +9,25 @@ $(document).ready(function(){
                 required : true,
                 minlength : 3,
                 maxlength : 100
+            },
+            active : {
+                required : true
             }
         }
     });
 
     $('.state-form').on("submit", function(e){
         e.preventDefault();
-
         if(!$('.state-form').valid()){
             return;
         }
-
         save_state();
-
-
     });
 });
 
 
 function save_state(){    
     let form_data = $('.state-form').serialize();
-    console.log('form_data',form_data);
 
     state_name = $('input[name=state_name]').val();
     active = $('input[name=active]').val();
@@ -41,19 +40,61 @@ function save_state(){
         beforeSend: function (xhr) {
             xhr.setRequestHeader ("Authorization", "Bearer "+ API_TOKEN);
         },
-        success: function(resultData) {
-            // var response = $.parseJSON(resultData);
-            // console.log(response);
-            // if(!response.success){
-            //     // Display validation errors
-            //     $.each(response.message, function (key, value) {
-            //         $('#form-error').append("<p>"+value[0]+"</p>");
-            //     });
-            // }else{
-            //     alert('login');
-            //     window.location.href = "<?= BASE_URL ?>home";
-            // }
+        success: function(response) {
+            if(response.success){
+                $('#dvResponseMsg').addClass("alert-success");
+                $('#dvResponseMsg').removeClass("alert-danger");
+                $('#dvResponseMsg').show();
+                $('#ResponseMsgTxt').html(response.result);
+            }else{
+                $('#dvResponseMsg').removeClass("alert-success");
+                $('#dvResponseMsg').addClass("alert-danger");
+                $('#dvResponseMsg').show();
+
+                $.each(response.result, function (key, value) {
+                    $('#ResponseMsgTxt').html("<p>"+value[0]+"</p>");
+                });
+            }
         }
     });
 
+}
+
+function getstatelist(){
+    $.ajax({
+        type: 'GET',
+        url: BASE_URL+`state/getlist`,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "Bearer "+ API_TOKEN);
+        },
+        success: function(response) {
+            $('#tblStateList tbody').html(response);
+
+            $('#tblStateList').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            } );
+        }
+    });
+}
+
+function edit_state(state_id){
+    $.ajax({
+        type: 'GET',
+        url: BASE_URL+`state/edit_state/`+state_id,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader ("Authorization", "Bearer "+ API_TOKEN);
+        },
+        success: function(response) {
+            
+            $('input[name="state_name"]').val(response.state_name);
+
+            $('input[name="active"]').prop('checked', false);
+            if(response.active == 1){
+                $('input[name="active"]').prop('checked', true);
+            }
+        }
+    });
 }

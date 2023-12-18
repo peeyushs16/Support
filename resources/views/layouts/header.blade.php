@@ -9,10 +9,11 @@
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/plugins/dataTables/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="css/plugins/dataTables/buttons.dataTables.min.css" rel="stylesheet">
     <script>
         var API_TOKEN = "{{session()->get('user')['token']}}";
     </script>
-    
 
     <!-- Mainly scripts -->
     <script src="js/jquery-3.1.1.min.js"></script>
@@ -26,14 +27,7 @@
 
     <!-- jQuery UI -->
     <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-
-    <script>
-        $(document).ready(function() {
-
-        });
-    </script>
-    
+    <script src="js/plugins/dataTables/jquery.dataTables.min.js"></script>
 </head>
 <body>
     <div id="wrapper">

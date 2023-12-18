@@ -28,94 +28,24 @@ var BASE_URL = '{{BASE_URL}}';
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <div class="project-list"  style="display: none;">
-                        <table class="table table-hover">
+                    <div class="project-list">
+                        
+                        <table class="table table-hover" id="tblStateList">
+                            <thead>
+                                <tr>
+                                    <td>State Name</td>
+                                    <td>Status</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr>
-                                    <td class="project-status">
-                                        <span class="label label-primary">Active</span>
-                                    </td>
-                                    <td class="project-title">
-                                        <a href="project_detail.html">Contract with Zender Company</a>
-                                        <br />
-                                        <small>Created 14.08.2014</small>
-                                    </td>
-                                    <td class="project-completion">
-                                        <small>Completion with: 48%</small>
-                                        <div class="progress progress-mini">
-                                            <div style="width: 48%;" class="progress-bar"></div>
-                                        </div>
-                                    </td>
-                                    <td class="project-people">
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a3.jpg"></a>
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a1.jpg"></a>
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a2.jpg"></a>
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a4.jpg"></a>
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a5.jpg"></a>
-                                    </td>
-                                    <td class="project-actions">
-                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="project-status">
-                                        <span class="label label-primary">Active</span>
-                                    </td>
-                                    <td class="project-title">
-                                        <a href="project_detail.html">There are many variations of passages</a>
-                                        <br />
-                                        <small>Created 11.08.2014</small>
-                                    </td>
-                                    <td class="project-completion">
-                                        <small>Completion with: 28%</small>
-                                        <div class="progress progress-mini">
-                                            <div style="width: 28%;" class="progress-bar"></div>
-                                        </div>
-                                    </td>
-                                    <td class="project-people">
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a7.jpg"></a>
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a6.jpg"></a>
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a3.jpg"></a>
-                                    </td>
-                                    <td class="project-actions">
-                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="project-status">
-                                        <span class="label label-default">Unactive</span>
-                                    </td>
-                                    <td class="project-title">
-                                        <a href="project_detail.html">Many desktop publishing packages and web</a>
-                                        <br />
-                                        <small>Created 10.08.2014</small>
-                                    </td>
-                                    <td class="project-completion">
-                                        <small>Completion with: 8%</small>
-                                        <div class="progress progress-mini">
-                                            <div style="width: 8%;" class="progress-bar"></div>
-                                        </div>
-                                    </td>
-                                    <td class="project-people">
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a5.jpg"></a>
-                                        <a href="#"><img alt="image" class="rounded-circle" src="img/a3.jpg"></a>
-                                    </td>
-                                    <td class="project-actions">
-                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                                        <a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
 
                     <div class="ibox-content" id="dv_project_form">
-                        <!-- <form onsubmit="return false"  action="{{BASE_URL}}api/state/save" method="POST"> -->
                         <form class="state-form" method="POST">
                             @csrf
-                            <p>Sign in today for more expirience.</p>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">State Name</label>
                                 <div class="col-lg-4">
@@ -126,13 +56,19 @@ var BASE_URL = '{{BASE_URL}}';
                             <div class="form-group row">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <div class="i-checks">
-                                        <label> <input type="checkbox" value="1" name="active"> Active </label></div>
+                                        <label> Active <input type="checkbox" value="1" name="active"> </label></div>
                                 </div>
                             </div>
                             <div>
-                            <!-- onclick="save_state()" -->
                                 <button  type="submit" class="btn btn-primary float-right">Save changes</button>
-                                <button type="button" class="btn btn-grey  float-right m-r-xs" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline btn-default  float-right m-r-xs" data-dismiss="modal">Close</button>
+                            </div>
+                            <br/>
+                            <div class="form-group col-md-5">
+                                <div id="dvResponseMsg" class="pace-inactive alert alert-success alert-dismissable">
+                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                    <span id="ResponseMsgTxt"></span>
+                                </div>
                             </div>
                         </form>
                     </div>
