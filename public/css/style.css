@@ -4616,7 +4616,7 @@ video {
 }
 .title-action {
   text-align: right;
-  padding-top: 30px;
+  padding-top: 18px;
 }
 .ibox-content h1,
 .ibox-content h2,
@@ -9851,4 +9851,16 @@ body.md-skin {
 
 .error-message p{
   margin-bottom: 2px;
+}
+
+.display-none {
+  display: none;
+}
+
+.alert p{
+  margin-bottom: 0px;
+}
+
+.img-loader{
+  padding: 8px;
 }

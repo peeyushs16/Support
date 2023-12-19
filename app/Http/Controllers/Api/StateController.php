@@ -57,6 +57,10 @@ class StateController extends Controller
         $validate = Validator::make($request->all(), $rules);
 
         if($validate->fails()){
+            // echo json_encode([
+            //     "success" => false,
+            //     'result' => $validate->errors()
+            // ]);die;
             return response([
                 "success" => false,
                 'result' => $validate->errors()
@@ -80,8 +84,26 @@ class StateController extends Controller
         ], 200);
     }
 
-    public function edit_state(Request $request, $state_id){
+    public function edit_state($state_id){
         return StateModel::where('id', $state_id)->first();
+    }
+
+    public function delete_state($state_id){
+
+        $check = StateModel::find($state_id);
+
+        if(!$check){
+            return response([
+                "success" => false,
+                'result' => 'State not found!'
+            ], 404);
+        }
+        $res = $check->delete();
+
+        return response([
+            "success" => true,
+            'result' => 'State deleted successfully!'
+        ], 200);
     }
 
     public function get_list(Request $request){
@@ -94,9 +116,17 @@ class StateController extends Controller
 
         $response =  $query->get();
 
-        $html = "";
+        $html = '<table class="table table-hover full-width" id="tblStateList">
+                    <thead>
+                        <tr>
+                            <td style="width:70%;">State Name</td>
+                            <td style="width:20%;">Status</td>
+                            <td style="width:10%;">Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>';
         foreach($response as $row){
-            $html .= "<tr>
+            $html .= "<tr id='tr_state_".$row['id']."'>
                         <td>".$row['state_name']."</td>
                         <td>". ($row['active'] == 1 ? 'Active' : 'Inactive')."</td>
                         <td>
@@ -105,6 +135,7 @@ class StateController extends Controller
                         </td>
                     </tr>";
         }
+        $html .= '</tbody></table>';
         return $html;
 
     }

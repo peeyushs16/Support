@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/state/update/{id}', [StateController::class, 'update_state']);
     Route::get('/state/getlist', [StateController::class, 'get_list']);
     Route::get('/state/edit_state/{id}', [StateController::class, 'edit_state']);
+    Route::delete('/state/delete_state/{id}', [StateController::class, 'delete_state']);
     Route::post('/change_password', [AuthController::class, 'change_password']);
 });
 
