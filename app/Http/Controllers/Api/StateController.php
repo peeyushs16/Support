@@ -57,10 +57,6 @@ class StateController extends Controller
         $validate = Validator::make($request->all(), $rules);
 
         if($validate->fails()){
-            // echo json_encode([
-            //     "success" => false,
-            //     'result' => $validate->errors()
-            // ]);die;
             return response([
                 "success" => false,
                 'result' => $validate->errors()
@@ -75,12 +71,12 @@ class StateController extends Controller
         if(!$res){
             return response([
                 "success" => false,
-                'result' => 'State not saved!'
+                'result' => 'State not updated!'
             ], 404);
         }
         return response([
             "success" => true,
-            'result' => 'State saved successfully!'
+            'result' => 'State updated successfully!'
         ], 200);
     }
 

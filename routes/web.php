@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\CityController;
 use App\Http\Middleware\CheckLogin;
 
 /*
@@ -25,4 +26,13 @@ Route::middleware([CheckLogin::class])->group(function(){
     Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [HomeController::class, 'index']);
     Route::get('/state', [StateController::class, 'get_list']);
+
+    Route::get('/city', [CityController::class, 'get_view']);
+    
+    Route::post('/city/save', [CityController::class, 'save_city']);
+    Route::post('/city/update/{id}', [CityController::class, 'update_city']);
+    Route::get('/city/getlist', [CityController::class, 'get_list']);
+    Route::get('/city/edit_city/{id}', [CityController::class, 'edit_city']);
+    Route::delete('/city/delete_city/{id}', [CityController::class, 'delete_city']);
+
 });

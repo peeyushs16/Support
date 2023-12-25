@@ -70,6 +70,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?= BASE_URL ?>city">
+                            <i class="fa fa-diamond"></i> 
+                            <span class="nav-label">City</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#">
                             <i class="fa fa-picture-o"></i> 
                             <span class="nav-label">Master</span>
