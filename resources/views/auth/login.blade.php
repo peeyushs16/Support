@@ -8,12 +8,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>EMIS Login Panel</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="{{ assetpublic('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ assetpublic('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
-        <link href="css/animate.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="js/jquery-2.1.1.js"></script>
+        <link href="{{ assetpublic('css/animate.css') }}" rel="stylesheet">
+        <link href="{{ assetpublic('css/style.css') }}" rel="stylesheet">
+        <script src="{{ assetpublic('js/jquery-2.1.1.js') }}"></script>
         <script>
 
             function login(){
@@ -54,7 +54,7 @@
             <div class="col-md-6">
                 <h2 class="font-bold">Welcome to IN+</h2>
                 <p>
-                    <img src="img/emis-icon.png" alt="logo" style="width: 30%;margin-bottom: 20px;margin-top:5%;"/>
+                    <img src="{{ assetpublic('img/emis-icon.png') }}" alt="logo" style="width: 30%;margin-bottom: 20px;margin-top:5%;"/>
                 </p>
             </div>
             <div class="col-md-6">

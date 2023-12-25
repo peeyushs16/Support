@@ -5,29 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Exact Support')</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/plugins/dataTables/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="css/plugins/dataTables/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="{{ assetpublic('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ assetpublic('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ assetpublic('css/animate.css') }}" rel="stylesheet">
+    <link href="{{ assetpublic('css/style.css') }}" rel="stylesheet">
+    <link href="{{ assetpublic('css/plugins/dataTables/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ assetpublic('css/plugins/dataTables/buttons.dataTables.min.css') }}" rel="stylesheet">
     <script>
         var API_TOKEN = "{{session()->get('user')['token']}}";
     </script>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="{{ assetpublic('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ assetpublic('js/popper.min.js') }}"></script>
+    <script src="{{ assetpublic('js/bootstrap.js') }}"></script>
+    <script src="{{ assetpublic('js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ assetpublic('js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
+    <script src="{{ assetpublic('js/inspinia.js') }}"></script>
 
     <!-- jQuery UI -->
-    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="js/plugins/dataTables/jquery.dataTables.min.js"></script>
+    <script src="{{ assetpublic('js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ assetpublic('js/plugins/dataTables/jquery.dataTables.min.js') }}"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -36,7 +36,7 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="rounded-circle" src="{{ assetpublic('img/profile_small.jpg') }}" />
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="block m-t-xs font-bold">David Williams</span>
                                 <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
@@ -64,7 +64,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/state">
+                        <a href="<?= BASE_URL ?>state">
                             <i class="fa fa-diamond"></i> 
                             <span class="nav-label">State</span>
                         </a>
@@ -109,7 +109,7 @@
                                 <li>
                                     <div class="dropdown-messages-box">
                                         <a class="dropdown-item float-left" href="profile.html">
-                                            <img alt="image" class="rounded-circle" src="img/a7.jpg">
+                                            <img alt="image" class="rounded-circle" src="{{ assetpublic('img/a7.jpg') }}">
                                         </a>
                                         <div>
                                             <small class="float-right">46h ago</small>
@@ -122,7 +122,7 @@
                                 <li>
                                     <div class="dropdown-messages-box">
                                         <a class="dropdown-item float-left" href="profile.html">
-                                            <img alt="image" class="rounded-circle" src="img/a4.jpg">
+                                            <img alt="image" class="rounded-circle" src="{{ assetpublic('img/a4.jpg') }}">
                                         </a>
                                         <div>
                                             <small class="float-right text-navy">5h ago</small>
@@ -135,7 +135,7 @@
                                 <li>
                                     <div class="dropdown-messages-box">
                                         <a class="dropdown-item float-left" href="profile.html">
-                                            <img alt="image" class="rounded-circle" src="img/profile.jpg">
+                                            <img alt="image" class="rounded-circle" src="{{ assetpublic('img/profile.jpg') }}">
                                         </a>
                                         <div>
                                             <small class="float-right">23h ago</small>
@@ -199,7 +199,7 @@
 
 
                         <li>
-                            <a href="/signout">
+                            <a href="<?= BASE_URL ?>signout">
                                 <i class="fa fa-sign-out"></i> Log out
                             </a>
                         </li>

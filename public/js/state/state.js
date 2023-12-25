@@ -147,7 +147,7 @@ function show_stateform(){
     $('#ResponseMsgTxt').html('');
 
     $('.state-form').trigger('reset');
-    $('.state-form').attr('action', BASE_URL+`state/save/`)
+    $('.state-form').attr('action', BASE_URL+`state/save`)
 
     $('.project-list').hide();
     $('#dv_project_form').show();

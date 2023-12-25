@@ -7,8 +7,8 @@
 <script>
 var BASE_URL = '{{BASE_URL}}';
 </script>
-<script src="js/jquery.validate.min.js"> </script>  
-<script src="/js/state/state.js"></script>
+<script src="{{ assetpublic('js/jquery.validate.min.js') }}"> </script>
+<script src="{{ assetpublic('js/state/state.js') }}"></script>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-8">
         <h2>State List</h2>
@@ -50,7 +50,7 @@ var BASE_URL = '{{BASE_URL}}';
                             <div class="button-section">
                                 <button type="submit" class="btn btn-primary float-right">Save changes</button>
                                 <button type="button" onclick="backtolist()" class="btn btn-outline btn-default float-right m-r-xs" data-dismiss="modal">Close</button>
-                                <img src="img/loader.gif" id="imgLoader" class="float-right img-loader display-none">
+                                <img src="{{ assetpublic('img/loader.gif') }}" id="imgLoader" class="float-right img-loader display-none">
                             </div>
                             <br/>
                             <div class="form-group col-md-5">
